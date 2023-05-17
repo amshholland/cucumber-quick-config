@@ -1,0 +1,28 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "precucumber": "rm -rf reports/report.js && rm -rf reports/ && mkdir reports/ && echo {} > reports/report.json && echo {} > reports/cucumber-html-report.html",
+    "transpile": "rm -rf dist && babel --extensions .ts --out-dir dist src",
+    "cucumber": "dotenv -e .env npm run transpile && cucumber-js",
+    "postcucumber": "dotenv -e .env ts-node ./src/reporter/cucumber-report.ts",
+    "codegen": "npx playwright codegen localhost:3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@cucumber/cucumber": "^8.0.0-rc.1",
+    "@playwright/test": "^1.16.1",
+    "cucumber-html-reporter": "^5.5.0",
+    "dotenv": "^10.0.0",
+    "dotenv-cli": "^7.0.0",
+    "pactum": "^3.4.0",
+    "playwright": "^1.16.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
