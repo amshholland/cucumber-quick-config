@@ -1,0 +1,13 @@
+/node_modules
+
+*.prof
+
+.idea/*
+
+venv/*
+
+api/venv/*
+
+reports/
+
+dist/
