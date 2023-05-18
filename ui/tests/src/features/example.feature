@@ -1,8 +1,8 @@
+@dev
 Feature: Example
 
-  @dev
-  @txn
   Scenario: Should give an example when
-    Given
-    When
-    Then the "example" is not visible in the "parent example"
+    Given a logged in user
+    When they are on the "dashboard" page
+    Then the "title" "text" is visible
+    And the "save" "button" is not visible
