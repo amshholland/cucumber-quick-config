@@ -1,5 +1,5 @@
-import { After, Before, setDefaultTimeout } from '@cucumber/cucumber';
-import { ScenarioWorld } from './world';
+import { After, Before, setDefaultTimeout } from "@cucumber/cucumber";
+import { ScenarioWorld } from "./world";
 
 setDefaultTimeout(parseInt(`${process.env.SCRIPT_TIMEOUT}`));
 
@@ -8,8 +8,8 @@ Before(async function (this: ScenarioWorld, scenario) {
 
   const contextOptions = {
     recordVideo: {
-      dir: `${process.env.VIDEO_PATH}${scenario.pickle.name}`
-    }
+      dir: `${process.env.VIDEO_PATH}${scenario.pickle.name}`,
+    },
   };
 
   return await this.init(contextOptions);
@@ -17,16 +17,17 @@ Before(async function (this: ScenarioWorld, scenario) {
 
 After(async function (this: ScenarioWorld, scenario) {
   const {
-    screen: { page, browser }
+    screen: {page, browser},
   } = this;
 
   const scenarioStatus = scenario.result?.status;
 
-  if (scenarioStatus === 'FAILED') {
+  if (scenarioStatus === "FAILED") {
     const screenshot = await page.screenshot({
-      path: `${process.env.SCREENSHOT_PATH}${scenario.pickle.name}.png`
+      path: `${process.env.SCREENSHOT_PATH}${scenario.pickle.name}.png`,
     });
-    await this.attach(screenshot, 'image/png');
+
+    await this.attach(screenshot, "image/png");
   }
 
   await browser.close();

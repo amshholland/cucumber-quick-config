@@ -1,0 +1,16 @@
+{
+  "username": "michaelScottWorldsBestBoss",
+  "city": "Scranton",
+  "state": "PA",
+  "household": {
+    "adults": 1,
+    "children": 0
+  },
+  "dwelling": {
+    "bathrooms": 1,
+    "bedrooms": 2,
+    "dwellingType": "apartment_5-9_units",
+    "sqft": 1700
+  },
+  "utilityCompany": "pge"
+}

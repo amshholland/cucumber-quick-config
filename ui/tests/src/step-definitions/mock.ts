@@ -13,20 +13,24 @@ When(
     mockPayloadKey: MockPayloadKey
   ) {
     const {
-      screen: { page },
+      screen: {page},
       globalConfig,
     } = this;
 
     getLogger().log(
-      `the ${mockServerKey} endpoint for ${mockConfigKey} is mocked with ${mockPayloadKey}`
+        `the ${mockServerKey} endpoint for ${mockConfigKey} is mocked with ${mockPayloadKey}`
     );
 
+    // const mockServerKey = 'user-profile';
+    // const mockConfigKey = 'api';
+    // const mockPayloadKey = 'user';
+
     await interceptResponse(
-      page,
-      mockServerKey,
-      mockConfigKey,
-      mockPayloadKey,
-      globalConfig
+        page,
+        mockServerKey,
+        mockConfigKey,
+        mockPayloadKey,
+        globalConfig
     );
   }
 );

@@ -14,21 +14,20 @@ import fs from "fs";
 dotenv.config();
 
 const hostsConfig: HostsConfig = getJsonFromFile(
-  `${process.env.HOSTS_URLS_PATH}`
+    `${process.env.HOST_URLS_PATH}`
 );
-
-const pagesConfig: PagesConfig = getJsonFromFile(`${process.env.PAGES_CONFIG}`);
-
 const mocksConfig: MocksConfig = getJsonFromFile(
-  `${process.env.MOCKS_URLS_PATH}`
+    `${process.env.MOCK_URLS_PATH}`
+);
+const pagesConfig: PagesConfig = getJsonFromFile(
+    `${process.env.PAGE_URLS_PATH}`
 );
 
 const payloadFiles = fs.readdirSync(
-  `${process.cwd()}${process.env.MOCK_PAYLOAD_PATH}`
+    `${process.cwd()}${process.env.MOCK_PAYLOADS_PATH}`
 );
-
 const mappingFiles = fs.readdirSync(
-  `${process.cwd()}${process.env.PAGE_ELEMENTS_PATH}`
+    `${process.cwd()}${process.env.PAGE_ELEMENTS_PATH}`
 );
 
 const getEnvList = (): string[] => {
@@ -36,7 +35,7 @@ const getEnvList = (): string[] => {
 
   if (envList.length === 0) {
     throw Error(
-      `🧨 No environments mapped in your ${process.env.HOSTS_URLS_PATH}`
+        `🧨 No environments mapped in your ${process.env.HOST_URLS_PATH}`
     );
   }
 
@@ -47,7 +46,7 @@ const mockPayloadMappings: MockPayloadMappings = payloadFiles.reduce(
   (payloadConfigAcc, file) => {
     const key = file.replace(".json", "");
     const payloadMappings = getJsonFromFile(
-      `${process.env.MOCK_PAYLOAD_PATH}${key}`
+        `${process.env.MOCK_PAYLOADS_PATH}/${key}`
     );
 
     return { ...payloadConfigAcc, [key]: payloadMappings };
@@ -67,11 +66,11 @@ const pageElementMappings: PageElementMappings = mappingFiles.reduce(
 );
 
 const worldParameters: GlobalConfig = {
+  hostsConfig,
+  mocksConfig,
+  pagesConfig,
   pageElementMappings,
   mockPayloadMappings,
-  hostsConfig,
-  pagesConfig,
-  mocksConfig,
 };
 
 const common = `./src/features/**/*.feature \
@@ -84,7 +83,11 @@ const common = `./src/features/**/*.feature \
                 --retry ${process.env.RETRY}`;
 
 const dev = generateCucumberRuntimeTag(common, getEnvList(), "dev");
-const stage = generateCucumberRuntimeTag(common, getEnvList(), "stage");
-const prod = generateCucumberRuntimeTag(common, getEnvList(), "prod");
+const smoke = generateCucumberRuntimeTag(common, getEnvList(), "smoke");
+const regression = generateCucumberRuntimeTag(
+    common,
+    getEnvList(),
+    "regression"
+);
 
-export { dev, stage, prod };
+export { dev, smoke, regression };
