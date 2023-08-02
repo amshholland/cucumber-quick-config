@@ -8,8 +8,9 @@
     "transpile": "rm -rf dist && babel --extensions .ts --out-dir dist src",
     "cucumber": "npm run transpile && cucumber-js",
     "cucumber:localhost": "NODE_ENV=localhost npm run cucumber",
-    "cucumber:production": "dotenv -e production.env npm run cucumber",
-    "postcucumber": "dotenv -e .env ts-node ./src/reporter/cucumber-report.ts",
+    "cucumber:stage": "NODE_ENV=stage npm run cucumber",
+    "cucumber:production": "NODE_ENV=production npm run cucumber",
+    "postcucumber": "COMMON_CONFIG_FILE=.env.common ts-node ./src/reporter/cucumber-report.ts",
     "codegen": "npx playwright codegen localhost:3000"
   },
   "author": "",

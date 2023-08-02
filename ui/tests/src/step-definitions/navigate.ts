@@ -1,13 +1,18 @@
+import { PageId } from "../env/global";
+import { navigateToPage } from "../support/navigation-behavior";
+import { Given } from "@cucumber/cucumber";
 import { ScenarioWorld } from "./setup/world";
-import { When } from "@cucumber/cucumber";
 
-When(
-    /^on the "([^"]*)" page$/,
-    async function (this: ScenarioWorld, pageRoute: string) {
+Given(
+    /^I am on the "([^"]*)" page$/,
+    async function (this: ScenarioWorld, pageId: PageId) {
         const {
             screen: {page},
+            globalConfig,
         } = this;
 
-        await page.goto(`${process.env.BASE_URL}/${pageRoute}`);
+        console.log(`I am on the ${pageId} page`);
+
+        await navigateToPage(page, pageId, globalConfig);
     }
 );
