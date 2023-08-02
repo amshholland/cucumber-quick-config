@@ -1,4 +1,5 @@
 {
   "title": "text='cuc-storybook-chromatic-config-quick-standup'",
-  "submit button": "text='Submit'"
+  "submit button": "text='Submit'",
+  "can't submit": "text='Inactive Submit'"
 }

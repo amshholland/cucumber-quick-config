@@ -13,8 +13,8 @@ When(
     mockPayloadKey: MockPayloadKey
   ) {
     const {
-      screen: {page},
-      globalConfig,
+        screen: {page},
+        globalConfig,
     } = this;
 
     getLogger().log(

@@ -1,17 +1,16 @@
-import dotenv from "dotenv";
 import { getJsonFromFile } from "./env/parseEnv";
 import { generateCucumberRuntimeTag } from "./support/tag-helper";
 import {
-  GlobalConfig,
-  HostsConfig,
-  MockPayloadMappings,
-  MocksConfig,
-  PageElementMappings,
-  PagesConfig,
+    GlobalConfig,
+    HostsConfig,
+    MockPayloadMappings,
+    MocksConfig,
+    PageElementMappings,
+    PagesConfig,
 } from "./env/global";
 import fs from "fs";
 
-dotenv.config();
+require("dotenv").config({path: `.env.${process.env.NODE_ENV}`});
 
 const hostsConfig: HostsConfig = getJsonFromFile(
     `${process.env.HOST_URLS_PATH}`
@@ -38,7 +37,7 @@ const getEnvList = (): string[] => {
         `🧨 No environments mapped in your ${process.env.HOST_URLS_PATH}`
     );
   }
-
+    console.log(envList);
   return envList;
 };
 

@@ -7,10 +7,10 @@ import { waitFor } from "../support/wait-for-behavior";
 When(
     /^they click the "([^"]*)" button$/,
     async function (this: ScenarioWorld, buttonName: string) {
-      const {
-        screen: {page},
-      } = this;
-      await page.locator(`text=${buttonName}`).click();
+        const {
+            screen: {page},
+        } = this;
+        await page.locator(`text=${buttonName}`).click();
     }
 );
 
@@ -21,26 +21,26 @@ When(
         elementKey: ElementKey,
         parentElement: string
     ) {
-      const {
-        screen: {page},
-        globalConfig,
-      } = this;
+        const {
+            screen: {page},
+            globalConfig,
+        } = this;
 
-      const elementIdentifier = await getElementLocator(
-          elementKey,
-          globalConfig,
-          parentElement
-      );
+        const elementIdentifier = await getElementLocator(
+            elementKey,
+            globalConfig,
+            parentElement
+        );
 
-      await waitFor(async () => {
-        const result = await page.waitForSelector(elementIdentifier, {
-          state: "visible",
+        await waitFor(async () => {
+            const result = await page.waitForSelector(elementIdentifier, {
+                state: "visible",
+            });
+            if (result) {
+                await page.locator(elementIdentifier).click();
+            }
+
+            return result;
         });
-        if (result) {
-          await page.locator(elementIdentifier).click();
-        }
-
-        return result;
-      });
     }
 );

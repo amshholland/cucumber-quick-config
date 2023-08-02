@@ -17,7 +17,7 @@ Before(async function (this: ScenarioWorld, scenario) {
 
 After(async function (this: ScenarioWorld, scenario) {
   const {
-    screen: {page, browser},
+      screen: {page, browser},
   } = this;
 
   const scenarioStatus = scenario.result?.status;

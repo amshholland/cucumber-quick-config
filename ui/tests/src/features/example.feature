@@ -4,6 +4,8 @@ Feature: Example
   @dev
   Scenario: Should give an example when
     # Standard example of a keyword
+    # If design has different user personas, then the users can
+    # be named and easily referenced with the defined conditions
     Given a logged in user
 
     # Example of a mock api call
@@ -24,7 +26,7 @@ Feature: Example
 
     # Example of a keyword using negation and no negation
     # The state assertion can be used to test whether something is visible or not
-    And the "save" "button" is not enabled
+    And the "can't submit" "button" is not enabled
     # Example of using the But keyword
-    But the "save" "button" is enabled
+    But the "submit" "button" is not enabled
 
