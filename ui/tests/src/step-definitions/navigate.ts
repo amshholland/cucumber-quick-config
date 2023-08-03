@@ -1,10 +1,10 @@
 import { PageId } from "../env/global";
 import { navigateToPage } from "../support/navigation-behavior";
-import { Given } from "@cucumber/cucumber";
+import { When } from "@cucumber/cucumber";
 import { ScenarioWorld } from "./setup/world";
 
-Given(
-    /^I am on the "([^"]*)" page$/,
+When(
+    /^on the "([^"]*)" page$/,
     async function (this: ScenarioWorld, pageId: PageId) {
         const {
             screen: {page},
